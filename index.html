@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devternship - Internship Certification Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles - Add your original CSS here */
+        :root {
+            --primary: #6C3CE9;
+            --primary-dark: #4A2C8F;
+            --dark-purple: #2A1B58;
+            --secondary: #FF6B6B;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+            --light-bg: #F8F9FA;
+            --border-color: #E9ECEF;
+            --success: #28a745;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-purple) 100%);
+            color: var(--white);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .course-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-title {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .course-desc {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .register-btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light-bg);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-img img {
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-text h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .about-text ul {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+
+        .about-text li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            color: var(--text-light);
+        }
+
+        .about-text li::before {
+            content: '•';
+            color: var(--primary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-purple);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin-top: 10px;
+        }
+
+        .footer-col p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Animation Classes */
+        .animate {
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .fade-in-up {
+            transform: translateY(30px);
+        }
+
+        .slide-in-left {
+            transform: translateX(-50px);
+        }
+
+        .slide-in-right {
+            transform: translateX(50px);
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 968px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        /* Particle Animation */
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+        }
+
+        .particle:nth-child(1) {
+            width: 10px;
+            height: 10px;
+            left: 10%;
+            top: 20%;
+            animation: floatParticle 8s infinite ease-in-out;
+        }
+
+        .particle:nth-child(2) {
+            width: 15px;
+            height: 15px;
+            left: 20%;
+            top: 80%;
+            animation: floatParticle 12s infinite ease-in-out;
+        }
+
+        .particle:nth-child(3) {
+            width: 8px;
+            height: 8px;
+            left: 50%;
+            top: 30%;
+            animation: floatParticle 9s infinite ease-in-out;
+        }
+
+        .particle:nth-child(4) {
+            width: 12px;
+            height: 12px;
+            left: 80%;
+            top: 15%;
+            animation: floatParticle 10s infinite ease-in-out;
+        }
+
+        .particle:nth-child(5) {
+            width: 7px;
+            height: 7px;
+            left: 70%;
+            top: 70%;
+            animation: floatParticle 11s infinite ease-in-out;
+        }
+
+        .particle:nth-child(6) {
+            width: 14px;
+            height: 14px;
+            left: 30%;
+            top: 40%;
+            animation: floatParticle 7s infinite ease-in-out;
+        }
+
+        .particle:nth-child(7) {
+            width: 9px;
+            height: 9px;
+            left: 85%;
+            top: 50%;
+            animation: floatParticle 14s infinite ease-in-out;
+        }
+
+        .particle:nth-child(8) {
+            width: 11px;
+            height: 11px;
+            left: 15%;
+            top: 60%;
+            animation: floatParticle 13s infinite ease-in-out;
+        }
+
+        @keyframes floatParticle {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-50px, 50px);
+            }
+
+            50% {
+                transform: translate(50px, 100px);
+            }
+
+            75% {
+                transform: translate(100px, -50px);
+            }
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+            margin: 0 auto;
+        }
+
+        /* Counter Section */
+        .counter-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark-purple) 100%);
+            padding: 80px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .counter-item {
+            position: relative;
+        }
+
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .counter-suffix {
+            font-size: 2rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .counter-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .counter-number {
+                font-size: 2.5rem;
+            }
+
+            .counter-suffix {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Dev<span>ternship</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A2C8F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1></h1>
+                <h1>Start Your Career with Certified Internships in Top Tech Domains</h1>
+                <p>Gain practical experience, build your portfolio, and earn a certificate that sets you apart in the job market.</p>
+                <a href="#courses" class="btn">Browse Courses</a>
+            </div>
+        </div>
+
+        <!-- Add particles container to hero section -->
+        <div class="particles-container">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+        <div class="container">
+            <div class="counter-grid">
+                <div class="counter-item" data-count="4500">
+                    <div class="counter-number">0</div>
+                    <div class="counter-label">Students Certified</div>
+                </div>
+                <div class="counter-item" data-count="12">
+                    <div class="counter-number">0</div>
+                    <div class="counter-label">Courses</div>
+                </div>
+                <div class="counter-item" data-count="87">
+                    <div class="counter-number">0</div>
+                    <div class="counter-label">Company Partners</div>
+                </div>
+                <div class="counter-item" data-count="95">
+                    <div class="counter-number">0</div>
+                    <div class="counter-label">Placement Rate</div>
+                    <div class="counter-suffix">%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Courses Section -->
+    <section class="section" id="courses">
+        <div class="container">
+            <h2 class="section-title">Explore Our Internship Programs</h2>
+            <div class="courses-grid">
+                <!-- Web Development -->
+                <div class="course-card animate fade-in-up">
+                    <div class="course-img" style="background-image: url('https://jessup.edu/wp-content/uploads/2024/01/Is-Web-Development-Oversaturated.jpg');"></div>
+                    <span class="badge">Popular</span>
+                    <div class="course-content">
+                        <h3 class="course-title">Web Development</h3>
+                        <p class="course-desc">Learn HTML, CSS, JavaScript and modern frameworks while building real-world projects.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Python Development -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="course-img" style="background-image: url('https://i.pinimg.com/736x/6a/fb/f4/6afbf45910b9b4c344737f76043d2cbc.jpg');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Python Development</h3>
+                        <p class="course-desc">Master Python programming with focus on data analysis, automation and backend development.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Java Development -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="course-img" style="background-image: url('https://t3.ftcdn.net/jpg/04/51/12/88/360_F_451128839_vmKOyil368UoXcac46W7aaqelTtLuNFk.jpg');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Java Development</h3>
+                        <p class="course-desc">Get hands-on experience with Java, Spring framework, and enterprise application development.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Data Science -->
+                <div class="course-card animate fade-in-up">
+                    <div class="course-img" style="background-image: url('https://bernardmarr.com/img/What%20Really%20Is%20Data%20Science%20A%20Super%20Simple%20Explanation%20For%20Anyone.png');"></div>
+                    <span class="badge">Hot</span>
+                    <div class="course-content">
+                        <h3 class="course-title">Data Science</h3>
+                        <p class="course-desc">Learn data analysis, visualization, machine learning and statistical modeling.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- UI/UX Design -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/free-vector/gradient-ui-ux-background_23-2149052117.jpg?semt=ais_hybrid&w=740');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">UI/UX Design</h3>
+                        <p class="course-desc">Design intuitive interfaces and user experiences using industry-standard tools and methods.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Mobile App Development -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/free-vector/app-development-banner_33099-1720.jpg?semt=ais_hybrid&w=740');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Mobile App Development</h3>
+                        <p class="course-desc">Build native and cross-platform mobile applications for iOS and Android.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Blockchain -->
+                <div class="course-card animate fade-in-up">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/premium-vector/block-chain-logo-design_375081-1588.jpg');"></div>
+                    <span class="badge">New</span>
+                    <div class="course-content">
+                        <h3 class="course-title">Blockchain</h3>
+                        <p class="course-desc">Explore distributed ledger technology, smart contracts, and blockchain applications development.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- HR and Management -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/free-vector/team-leader-teamwork-concept_74855-6671.jpg?semt=ais_hybrid&w=740');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">HR and Management</h3>
+                        <p class="course-desc">Develop essential skills in human resources, team leadership, and organizational management.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- AI/ML -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="course-img" style="background-image: url('https://empowersofttech.com/wp-content/uploads/2025/01/aiml-post-image-3.jpg');"></div>
+                    <span class="badge">Popular</span>
+                    <div class="course-content">
+                        <h3 class="course-title">AI/ML</h3>
+                        <p class="course-desc">Learn artificial intelligence and machine learning techniques to develop intelligent systems.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Generative AI -->
+                <div class="course-card animate fade-in-up">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/premium-photo/ai-logo-high-technology-logo-generative-ai_888418-1636.jpg');"></div>
+                    <span class="badge">Trending</span>
+                    <div class="course-content">
+                        <h3 class="course-title">Generative AI</h3>
+                        <p class="course-desc">Master cutting-edge generative models, LLMs, and creative AI applications development.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.2s;">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/free-vector/cyber-security-concept_23-2148530843.jpg?semt=ais_hybrid&w=740');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Cybersecurity</h3>
+                        <p class="course-desc">Develop skills in network security, ethical hacking, and cyber threat analysis and prevention.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+
+                <!-- IoT -->
+                <div class="course-card animate fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="course-img" style="background-image: url('https://img.freepik.com/premium-vector/iot-internet-things-logo-shape-sphere-with-hexagon-pattern-wireframe-hand-everything-connectivity-device-concept-network-business-with-internet-vector-illustration_127544-1999.jpg');"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">IoT</h3>
+                        <p class="course-desc">Learn to build connected device ecosystems, sensors integration, and IoT application development.</p>
+                        <a href="https://docs.google.com/forms/d/1P5x3TOOSWZou8xODVFk9i7WdIsP9xPdYxg86A1aWZEI/edit" target="_blank" class="btn register-btn">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Our Certification Program</h2>
+            <div class="about-content">
+                <div class="about-img animate slide-in-left">
+                    <img src="https://www.faulkner.edu/wp-content/uploads/college-students-working-on-a-group-project-Faulkner-University.jpg" alt="Students working on project">
+                </div>
+                <div class="about-text animate slide-in-right">
+                    <h2>Why Choose Our Internship Program?</h2>
+                    <p>Our industry-aligned certification program provides you with practical experience working on real-world projects under the guidance of expert mentors.</p>
+                    <p>We focus on hands-on learning to ensure you develop the skills employers are actually looking for. Each internship concludes with a certification that validates your capabilities to potential employers.</p>
+                    <p>Our benefits include:</p>
+                    <ul>
+                        <li>Project-based learning approach</li>
+                        <li>Industry-relevant curriculum</li>
+                        <li>Expert mentorship</li>
+                        <li>Flexible learning schedule</li>
+                        <li>Portfolio development support</li>
+                        <li>Job placement assistance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Devternship</h3>
+                    <p>Empowering students with practical skills and industry-recognized certifications.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Courses</h3>
+                    <ul>
+                        <li><a href="#courses">Web Development</a></li>
+                        <li><a href="#courses">Blockchain</a></li>
+                        <li><a href="#courses">Generative AI</a></li>
+                        <li><a href="#courses">Cybersecurity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col" id="contact">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@devternship.com</p>
+                    <p>Address: Kondapur, Hyderabad, 500084, Telangana</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Devternship. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Handle animations on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for elements when scrolled into view
+            const animateElements = document.querySelectorAll('.animate');
+
+            const animateOnScroll = function() {
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Trigger on initial load
+
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+
+            // Counter animation
+            const counterItems = document.querySelectorAll('.counter-item');
+            const counterSection = document.querySelector('.counter-section');
+
+            if (counterItems.length > 0 && counterSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            counterItems.forEach(item => {
+                                const target = parseInt(item.dataset.count);
+                                const counterElement = item.querySelector('.counter-number');
+                                let current = 0;
+                                const increment = target / 50; // Adjust for speed
+                                const timer = setInterval(() => {
+                                    current += increment;
+                                    counterElement.textContent = Math.floor(current);
+                                    if (current >= target) {
+                                        counterElement.textContent = target;
+                                        clearInterval(timer);
+                                    }
+                                }, 50);
+                            });
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.5
+                });
+
+                observer.observe(counterSection);
+            }
+
+            // Initialize particle animations
+            const particles = document.querySelectorAll('.particle');
+            if (particles.length > 0) {
+                particles.forEach(particle => {
+                    // Randomize initial positions
+                    const randomX = Math.random() * 100;
+                    const randomY = Math.random() * 100;
+                    particle.style.left = `${randomX}%`;
+                    particle.style.top = `${randomY}%`;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
